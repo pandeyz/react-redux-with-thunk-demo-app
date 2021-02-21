@@ -7,13 +7,13 @@ class AddUser extends React.Component {
     constructor() {
         super();
 
-        // To focus the fullname
+        // To focus the name
         this.myRef = React.createRef();
 
         this.state = {
-            fullname: '',
+            name: '',
             phone: '',
-            department: ''
+            website: ''
         }
     }
 
@@ -22,7 +22,7 @@ class AddUser extends React.Component {
         event.preventDefault();
 
         // Call the reducer
-        if( this.state.fullname === '' || this.state.phone === '' || this.state.department === '' )
+        if( this.state.name === '' || this.state.phone === '' || this.state.website === '' )
         {
             alert('All fields are manadatory');
             return false;
@@ -31,9 +31,9 @@ class AddUser extends React.Component {
         this.props.addUser(this.state);
 
         // Reset the values
-        this.setState({ fullname: '', phone: '', department: '' });
+        this.setState({ name: '', phone: '', website: '' });
 
-        // To focus the fullname
+        // To focus the name
         this.myRef.current.focus();
     }
 
@@ -48,23 +48,18 @@ class AddUser extends React.Component {
                 <div className="text-center"><h4>Add User</h4></div>
                 <form className="form-inline" autoComplete="off" onSubmit={ this.handleSubmit } autoComplete="off">
                     <div className="form-group">
-                        <label htmlFor="fullname">Full Name:</label>
-                        <input type="text" className="form-control" name="fullname" onChange={ this.handleInput } value={ this.state.fullname } ref={this.myRef} />
+                        <label htmlFor="name">Full Name:</label>
+                        <input type="text" className="form-control" name="name" onChange={ this.handleInput } value={ this.state.name } ref={this.myRef} />
                     </div>
-                    <div className="form-group" style={{ marginLeft: 100 }}>
-                        <label htmlFor="fullname">Phone No:</label>
+                    <div className="form-group" style={{ marginLeft: 60 }}>
+                        <label htmlFor="name">Phone No:</label>
                         <input type="text" className="form-control" name="phone" onChange={ this.handleInput } value={ this.state.phone } />
                     </div>
-                    <div className="form-group" style={{ marginLeft: 100 }}>
-                        <label htmlFor="department">Department:</label>
-                        <select className="form-control" name="department" onChange={ this.handleInput } value={ this.state.department } >
-                            <option value="">Select</option>
-                            <option value="IT">IT</option>
-                            <option value="QA">QA</option>
-                            <option value="Big Data">Big Data</option>
-                        </select>
+                    <div className="form-group" style={{ marginLeft: 60 }}>
+                        <label htmlFor="department">Website:</label>
+                        <input type="text" className="form-control" name="website" onChange={ this.handleInput } value={ this.state.website } />
                     </div>
-                    <button style={{ marginLeft: 100 }} type="submit" className="btn btn-default">Submit</button>
+                    <button style={{ marginLeft: 60 }} type="submit" className="btn btn-default">Submit</button>
                 </form>
             </div>
         )

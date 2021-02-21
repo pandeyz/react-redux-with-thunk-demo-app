@@ -8,7 +8,10 @@ class ListUser extends React.Component {
     // To delete user
     handleDelete = (id) => {
         // Call the action
-        this.props.deleteUser(id);
+        if( window.confirm('Are you sure?') )
+        {
+            this.props.deleteUser(id);
+        }
     }
 
     componentDidMount() {
@@ -19,16 +22,13 @@ class ListUser extends React.Component {
         var tableRow = <tr><td colSpan="5" className="text-center">No record found</td></tr>;
         if( this.props.users.length > 0 )
         {
-            for(let i=0; i<this.props.users.length; i++)
-            {
-                tableRow = this.props.users[i].map((user, index) => (<tr key={ index }>
-                    <td>{ index + 1 }</td>
-                    <td>{ user.fullname }</td>
-                    <td>{ user.phone }</td>
-                    <td>{ user.department }</td>
-                    <td><span className="glyphicon glyphicon-edit"></span> | <span onClick={ () => this.handleDelete(index) } className="glyphicon glyphicon-trash"></span></td>
-                </tr>))
-            }
+            tableRow = this.props.users.map((user, index) => (<tr key={ index }>
+                <td>{ index + 1 }</td>
+                <td>{ user.name }</td>
+                <td>{ user.phone }</td>
+                <td>{ user.website }</td>
+                <td><span onClick={ () => this.handleDelete(index) } className="glyphicon glyphicon-trash"></span></td>
+            </tr>))
         }
         return (
             <div>
@@ -40,7 +40,7 @@ class ListUser extends React.Component {
                             <th>#</th>
                             <th>Name</th>
                             <th>Phone</th>
-                            <th>Department</th>
+                            <th>Website</th>
                             <th>Action</th>
                         </tr>
                     </thead>

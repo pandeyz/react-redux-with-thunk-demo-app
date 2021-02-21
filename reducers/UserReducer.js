@@ -1,5 +1,5 @@
 // UserReducer.js
-import { users } from './user';
+const users = [];
 
 const UserReducer = function reducer(state = users, action) {
     switch(action.type) {
@@ -8,15 +8,12 @@ const UserReducer = function reducer(state = users, action) {
 
         case 'DELETE_USER':
             let existingUsers = [...state];
-            let userId = action.payload;
-
-            console.log( existingUsers[0].filter( (user, index) => ( user.id == userId ) ? userId: null ) );
-            
-            // existingUsers.splice(userIndex, 1);
+            let userIndex = action.payload;
+            existingUsers.splice(userIndex, 1);
             return existingUsers;
-
+            
         case 'FETCH_USERS':
-            return [...state, action.payload];
+            return [...state, ...action.payload];
         default:
             return state;
     }

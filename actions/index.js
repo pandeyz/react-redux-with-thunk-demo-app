@@ -2,14 +2,6 @@
 
 const axios = require('axios');
 
-// axios.get('http://localhost/react/october/api/process.php?function=fetchemployees')
-// .then(response => {
-//     // console.log(response);
-// })
-// .catch(error => {
-//     // console.log(error);
-// });
-
 // To add new user
 export const addUser = (user) => {
     return {
@@ -29,15 +21,15 @@ export const deleteUser = (userId) => {
 // To fetch users (Redux thunk)
 export const fetchUsers = () => {
     return async function fetchUserList(dispatch) {
-        await axios.get('http://localhost/react/october/api/process.php?function=fetchemployees')
+        await axios.get('https://jsonplaceholder.typicode.com/users')
         .then(response => {
             dispatch({
                 type: 'FETCH_USERS',
-                payload: response.data.employees
+                payload: response.data
             })
         })
         .catch(error => {
-            // console.log(error);
+            console.log(error);
         });
     }
 }
